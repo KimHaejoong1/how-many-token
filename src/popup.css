@@ -19,7 +19,7 @@
   }
 }
 * { box-sizing: border-box; }
-body { width: 800px; margin: 0; padding: 10px; background: var(--background); color: var(--foreground); }
+body { width: 400px; margin: 0; padding: 10px; background: var(--background); color: var(--foreground); }
 .usage { border: 1px solid var(--border); border-radius: 16px; padding: 11px 15px 14px; }
 .heading, .details { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 h1 { font-size: 14px; font-weight: 500; margin: 0; line-height: 22px; }
