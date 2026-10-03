@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "How Many Token",
+  "version": "1.0.0",
+  "description": "ChatGPT 주간 사용 한도의 잔여량과 초기화까지 남은 시간을 확인합니다.",
+  "minimum_chrome_version": "111",
+  "host_permissions": ["https://chatgpt.com/*"],
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "ChatGPT 주간 사용 한도",
+    "default_popup": "popup.html",
+    "default_icon": {"16": "icons/16.png", "32": "icons/32.png"}
+  },
+  "icons": {"16": "icons/16.png", "48": "icons/48.png", "128": "icons/128.png"},
+  "content_scripts": [
+    {
+      "matches": ["https://chatgpt.com/*"],
+      "js": ["src/page-usage.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://chatgpt.com/*"],
+      "js": ["src/content.js"],
+      "run_at": "document_start",
+      "world": "ISOLATED"
+    }
+  ]
+}
