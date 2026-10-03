@@ -1,8 +1,17 @@
 import { normalizeUsage } from "./usage.js";
+import { readSessionUsage } from "./session-usage.js";
 
 const ORIGIN = "https://chatgpt.com/";
 const USAGE_PAGE = `${ORIGIN}settings/usage?tab=overview`;
 const pending = new Map();
+let pendingSession = null;
+
+function readWithoutTab() {
+  if (!pendingSession) {
+    pendingSession = readSessionUsage().finally(() => { pendingSession = null; });
+  }
+  return pendingSession;
+}
 
 async function readTab(tab) {
   if (pending.has(tab.id)) return pending.get(tab.id);
@@ -29,7 +38,7 @@ async function getUsage() {
     chrome.tabs.query({ active: true, lastFocusedWindow: true })
   ]);
   const candidates = tabs.filter(tab => !tab.discarded && typeof tab.id === "number");
-  if (!candidates.length) return { ok: false, code: "NO_TAB" };
+  if (!candidates.length) return readWithoutTab();
   const focusedId = focused[0]?.id;
   candidates.sort((a, b) => Number(b.id === focusedId) - Number(a.id === focusedId) ||
     (b.lastAccessed || 0) - (a.lastAccessed || 0));

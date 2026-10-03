@@ -41,6 +41,8 @@ export function usageColor(percent) {
 }
 
 export const ERRORS = {
+  LOGIN_REQUIRED: "ChatGPT에 한 번 로그인해 주세요. 로그인 후에는 탭을 닫아도 됩니다.",
+  DIRECT_BLOCKED: "탭 없이 연결하지 못했어요. ChatGPT를 열어 로그인 상태를 확인해 주세요.",
   NO_TAB: "ChatGPT 탭을 하나 열어 주세요. 로그인된 탭이 있으면 바로 확인할 수 있어요.",
   CONNECT: "ChatGPT에 로그인한 뒤 탭을 한 번 새로고침해 주세요.",
   RELOAD: "확장프로그램을 연결하려면 열려 있는 ChatGPT 탭을 한 번 새로고침해 주세요.",

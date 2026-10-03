@@ -30,7 +30,7 @@ function showError(code) {
   ui.fill.style.width = "0%";
   ui.notice.hidden = false;
   ui.error.textContent = ERRORS[code] || ERRORS.NETWORK;
-  ui.connect.hidden = !["NO_TAB", "CONNECT", "RELOAD", "FORBIDDEN", "UNSUPPORTED"].includes(code);
+  ui.connect.hidden = !["NO_TAB", "CONNECT", "RELOAD", "FORBIDDEN", "UNSUPPORTED", "LOGIN_REQUIRED", "DIRECT_BLOCKED"].includes(code);
   ui.status.textContent = ui.error.textContent;
 }
 
