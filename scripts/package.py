@@ -3,7 +3,7 @@ import json
 from zipfile import ZipFile, ZIP_DEFLATED
 
 root = Path(__file__).resolve().parent.parent
-version = json.loads((root / "manifest.json").read_text())["version"]
+version = json.loads((root / "manifest.json").read_text(encoding="utf-8"))["version"]
 destination = root / "dist" / f"how-many-token-{version}.zip"
 destination.parent.mkdir(exist_ok=True)
 files = [root / "manifest.json", root / "popup.html", root / "README.md"]
